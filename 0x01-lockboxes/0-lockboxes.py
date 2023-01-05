@@ -1,20 +1,30 @@
+#!/usr/bin/python3
+""" Module that checks locked boxes """
+
+
 def canUnlockAll(boxes):
-    # Set of boxes that we have keys for
-    unlocked = set([0])
+    """ Method that determines if all boxes can be opened """
 
-    # Stack of boxes to explore
-    stack = [0]
+    if boxes == 0:
+        return False
 
-    # Depth-first search
-    while stack:
-        # Get the next box to explore
-        box = stack.pop()
+    if not isinstance(boxes, list):
+        return False
 
-        # Add all the boxes that we have keys for
-        for key in boxes[box]:
-            if key not in unlocked:
-                unlocked.add(key)
-                stack.append(key)
+    if len(boxes) == 0:
+        return False
 
-    # Check if we have keys for all the boxes
-    return len(unlocked) == len(boxes)
+    check = [0]
+    list_ing = [i for i in range(len(boxes))]
+
+    for in_check in check:
+        for in_boxes in boxes[in_check]:
+            if in_boxes not in check and in_boxes in list_ing:
+                if in_boxes >= len(boxes):
+                    return False
+                check.append(in_boxes)
+
+    if len(check) == len(boxes):
+        return True
+    else:
+        return False
