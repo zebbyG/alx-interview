@@ -1,26 +1,20 @@
-#!/usr/bin/python3
-
-
 def canUnlockAll(boxes):
-    # Set to store visited boxes
-    visited = set()
-    # Queue for breadth-first search
-    queue = []
+    # Set of boxes that we have keys for
+    unlocked = set([0])
 
-    # Start with the first box
-    queue.append(boxes[0])
-    visited.add(0)
+    # Stack of boxes to explore
+    stack = [0]
 
-    # Perform breadth-first search
-    while queue:
-        # Get the next box
-        box = queue.pop(0)
-        # Check all the keys in the box
-        for key in box:
-            # If the key corresponds to a not visited box, add it to the queue
-            if key not in visited:
-                queue.append(boxes[key])
-                visited.add(key)
+    # Depth-first search
+    while stack:
+        # Get the next box to explore
+        box = stack.pop()
 
-    # Return whether all boxes have been visited
-    return len(visited) == len(boxes)
+        # Add all the boxes that we have keys for
+        for key in boxes[box]:
+            if key not in unlocked:
+                unlocked.add(key)
+                stack.append(key)
+
+    # Check if we have keys for all the boxes
+    return len(unlocked) == len(boxes)
