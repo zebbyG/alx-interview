@@ -1,18 +1,26 @@
 #!/usr/bin/python3
-"""
-Lockboxes
-"""
 
 
 def canUnlockAll(boxes):
-    """Set of unlocked boxes"""
-    unlocked = {0}
+    # Set to store visited boxes
+    visited = set()
+    # Queue for breadth-first search
+    queue = []
 
-    """Iterate through the boxes, starting from the first one"""
-    for i in range(len(boxes)):
-        """If the current box has keys, add the corresponding boxes to the set of unlocked boxes"""
-        for key in boxes[i]:
-            unlocked.add(key)
+    # Start with the first box
+    queue.append(boxes[0])
+    visited.add(0)
 
-    """Return whether all boxes can be unlocked"""
-    return len(unlocked) == len(boxes)
+    # Perform breadth-first search
+    while queue:
+        # Get the next box
+        box = queue.pop(0)
+        # Check all the keys in the box
+        for key in box:
+            # If the key corresponds to a not visited box, add it to the queue
+            if key not in visited:
+                queue.append(boxes[key])
+                visited.add(key)
+
+    # Return whether all boxes have been visited
+    return len(visited) == len(boxes)
