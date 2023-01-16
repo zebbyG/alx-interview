@@ -1,6 +1,6 @@
 #### 0x03-log_parsing
 
-#### <strong>:page_with_curl:Log parsing</strong>
+## <strong>:page_with_curl:Log parsing</strong>
 
 [Log parsing](0-stats.py)
 
