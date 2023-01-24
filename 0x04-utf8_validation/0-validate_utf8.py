@@ -1,25 +1,29 @@
 #!/usr/bin/python3
 """
- UTF-8 Validation
+UTF-8 Validation
 """
 
 
 def validUTF8(data):
-    num_bytes = 0
-    for byte in data:
-        if num_bytes == 0:
-            if (byte >> 7) == 0b0:
-                num_bytes = 0
-            elif (byte >> 5) == 0b110:
-                num_bytes = 1
-            elif (byte >> 4) == 0b1110:
-                num_bytes = 2
-            elif (byte >> 3) == 0b11110:
-                num_bytes = 3
-            else:
+    """
+    data: a list of integers
+    Return: True if data is a valid UTF-8
+    encoding, else return False
+    """
+    byte_count = 0
+
+    for i in data:
+        if byte_count == 0:
+            if i >> 5 == 0b110 or i >> 5 == 0b1110:
+                byte_count = 1
+            elif i >> 4 == 0b1110:
+                byte_count = 2
+            elif i >> 3 == 0b11110:
+                byte_count = 3
+            elif i >> 7 == 0b1:
                 return False
         else:
-            if (byte >> 6) != 0b10:
+            if i >> 6 != 0b10:
                 return False
-            num_bytes -= 1
-    return num_bytes == 0
+            byte_count -= 1
+    return byte_count == 0
