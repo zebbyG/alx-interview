@@ -2,10 +2,9 @@
 
 - A pile of coins of different values, determining the fewest number of coins needed to meet a given amount total
 
-## Tests :heavy_check_mark:
 
 
-## Tasks :page_with_curl:
+## :heavy_check_mark: Tasks :page_with_curl:
 
 - Given a pile of coins of different values, determine the fewest number of coins needed to meet a given amount total.
 
