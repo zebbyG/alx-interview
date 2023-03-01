@@ -1,25 +1,34 @@
+#!/usr/bin/python3
+"""Check if the grid is empty"""
+
+
 def island_perimeter(grid):
-    rows = len(grid)
-    cols = len(grid[0])
+    """Check if the grid is empty"""
+    if not grid:
+        return 0
+
+    # Get the dimensions of the grid
+    rows, cols = len(grid), len(grid[0])
+
+    # Initialize the perimeter to zero
     perimeter = 0
 
-    for r in range(rows):
-        for c in range(cols):
-            if grid[r][c] == 1:
-                # Check the left side of the current cell
-                if c == 0 or grid[r][c - 1] == 0:
+    # Loop over all cells in the grid
+    for i in range(rows):
+        for j in range(cols):
+            # Check if the current cell is land
+            if grid[i][j] == 1:
+                # Check if the cell to the left is water or out of bounds
+                if j == 0 or grid[i][j-1] == 0:
                     perimeter += 1
-
-                # Check the right side of the current cell
-                if c == cols - 1 or grid[r][c + 1] == 0:
+                # Check if the cell to the right is water or out of bounds
+                if j == cols-1 or grid[i][j+1] == 0:
                     perimeter += 1
-
-                # Check the top side of the current cell
-                if r == 0 or grid[r - 1][c] == 0:
+                # Check if the cell above is water or out of bounds
+                if i == 0 or grid[i-1][j] == 0:
                     perimeter += 1
-
-                # Check the bottom side of the current cell
-                if r == rows - 1 or grid[r + 1][c] == 0:
+                # Check if the cell below is water or out of bounds
+                if i == rows-1 or grid[i+1][j] == 0:
                     perimeter += 1
 
     return perimeter
