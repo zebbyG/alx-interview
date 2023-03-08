@@ -2,7 +2,7 @@
 
 - Playing with prime numbers
 
-##:heavy_check_mark:
+:heavy_check_mark:
 
 ## Tasks :page_with_curl:
 
